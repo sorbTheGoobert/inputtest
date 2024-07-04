@@ -71,13 +71,13 @@ async function spawnVerticalAttack(offset) {
     VerticalAttack.top = `${offset}px`;
     VerticalAttack.classList.remove("poof");
     VerticalAttack.classList.add("warn");
-    await sleep(1000);
+    await sleep(500);
     VerticalAttack.classList.remove("warn");
     //VerticalHitbox = true;
-    await sleep(500);
+    await sleep(250);
     //VerticalHitbox = false;
     VerticalAttack.classList.add("poof");
-    //await sleep(500);
+    await sleep(250);
 }
 
 async function spawnHorizontalAttack(offset){
@@ -112,6 +112,6 @@ function start() {
     document.getElementById("button").style = "display: none";
     started = true;
     setInterval(refresh, 1000);
-    // setInterval(checkIfLost, 1000);
+    // setInterval(checkIfLost, 50);
     scorePanel.innerHTML = `Your current score is: ${score}s`
 }
