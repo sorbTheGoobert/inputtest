@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing for the millionth time</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #player {
+            aspect-ratio: 1;
+            width: 25px;
+            background-color: red;
+            position: absolute;
+            z-index: 998;
+        }
+        .poof {
+            visibility: hidden;
+        }
+        #score {
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            z-index: 999;
+        }
+        .warn {
+            opacity: 0.5;
+        }
+        .horizontalAttack {
+            background-color: yellow;
+            height: 100vh;
+            width: 50px;
+        }
+
+        .verticalAttack {
+            background-color: yellow;
+            width: 100vw;
+            height: 50px;
+        }
+
+        #horizontalAttackContainer {
+            position: absolute;
+            gap: 50px;
+            
+            display: flex;
+        }
+
+        #verticalAttackContainer {
+            position: absolute;
+            gap: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        #button {
+            z-index: 999;
+        }
+    </style>
+</head>
+<body onkeydown="move()">
+    <div id="player" class="poof"></div>
+    <div id="horizontalAttackContainer" class="poof">
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <!-- <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div> -->
+        <!-- <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div>
+        <div class="horizontalAttack"></div> -->
+    </div>
+    
+    <div id="verticalAttackContainer" class="poof">
+        <div class="verticalAttack"></div>
+        <!-- <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div> -->
+        <!-- <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div>
+        <div class="verticalAttack"></div> -->
+    </div>
+    <p id="score">Your current score is: none ya know?</p>
+    <button onclick="start()" id="button">start</button>
+    <script src="./script.js"></script>
+</body>
+</html>
