@@ -11,15 +11,14 @@ var HorizontalAttack = document.getElementById("horizontalAttackContainer");
 var VerticalHitbox = false;
 var HorizontalHitbox = false;
 
-function sleep(delay) {
-    var start = new Date().getTime();
-    while (new Date().getTime() < start + delay);
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function move() {
     if(started == true){
         if (event.key == "w") {
-            yCoor -= 5;
+            yCoor -= 15;
             if (yCoor < 0) {
                 yCoor = 0;
             }
@@ -27,7 +26,7 @@ function move() {
         }
         
         if (event.key == "s") {
-            yCoor += 5;
+            yCoor += 15;
             if (yCoor > heigth) {
                 yCoor = heigth;
             }
@@ -35,7 +34,7 @@ function move() {
         }
         
         if (event.key == "a") {
-            xCoor -= 5;
+            xCoor -= 15;
             if (xCoor < 0) {
                 xCoor = 0;
             }
@@ -43,7 +42,7 @@ function move() {
         }
         
         if (event.key == "d") {
-            xCoor += 5;
+            xCoor += 15;
             if (xCoor > width) {
                 xCoor = width;
             }
@@ -55,41 +54,41 @@ function move() {
 function spawnObjects() {
     var rng = Math.floor(Math.random() * 100);
     var placementrng = Math.floor(Math.random() * 50);
-    if(0 <= rng < 20){
+    if(0 <= rng && rng< 20){
         spawnVerticalAttack(placementrng);
         spawnHorizontalAttack(placementrng);
     }
-    if(20 <= rng < 60){
+    if(20 <= rng && rng < 60){
         spawnVerticalAttack(placementrng);
     }
-    if(60 <= rng < 100){
+    if(60 <= rng && rng< 100){
         spawnHorizontalAttack(placementrng);
     }
 }
 
 async function spawnVerticalAttack(offset) {
-    VerticalAttack.top = `${offset}px`;
+    VerticalAttack.style.top = `${offset}px`;
     VerticalAttack.classList.remove("poof");
     VerticalAttack.classList.add("warn");
-    await sleep(500);
+    await sleep(750);
     VerticalAttack.classList.remove("warn");
-    //VerticalHitbox = true;
+    VerticalHitbox = true;
     await sleep(250);
-    //VerticalHitbox = false;
+    VerticalHitbox = false;
     VerticalAttack.classList.add("poof");
     await sleep(250);
 }
 
 async function spawnHorizontalAttack(offset){
-    HorizontalAttack.left = `${offset}px`;
+    HorizontalAttack.style.left = `${offset}px`;
     HorizontalAttack.classList.remove("poof");
     HorizontalAttack.classList.add("warn");
-    await sleep(500);
+    await sleep(750);
     HorizontalAttack.classList.remove("warn");
-    //HorizontalHitbox = true;
+    HorizontalHitbox = true;
     await sleep(250);
     HorizontalHitbox = false;
-    //HorizontalAttack.classList.add("poof");
+    HorizontalAttack.classList.add("poof");
     await sleep(250);
 }
 
@@ -102,16 +101,12 @@ function addScore() {
     scorePanel.innerHTML = `Your current score is: ${score}s`
 }
 
-function refresh(){
-    spawnObjects();
-    addScore();
-}
-
 function start() {
     player.classList.remove("poof");
     document.getElementById("button").style = "display: none";
     started = true;
-    setInterval(refresh, 1000);
-    // setInterval(checkIfLost, 50);
+    setInterval(addScore, 1000);
+    setInterval(spawnObjects, 1250);
+    setInterval(checkIfLost, 50);
     scorePanel.innerHTML = `Your current score is: ${score}s`
 }
