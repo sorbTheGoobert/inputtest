@@ -7,8 +7,6 @@ var heigth = document.body.offsetHeight - 100;
 var started = false;
 var scorePanel = document.getElementById("score");
 var score = 0;
-var VerticalAttack = document.getElementById("verticalAttackContainer");
-var HorizontalAttack = document.getElementById("horizontalAttackContainer");
 var VerticalHitbox = false;
 var HorizontalHitbox = false;
 var eachVerticalAttack = document.getElementsByClassName("verticalAttack");
@@ -75,15 +73,21 @@ function spawnObjects() {
 }
 
 async function spawnVerticalAttack(offset) {
-    VerticalAttack.style.top = `${offset}px`;
-    VerticalAttack.classList.remove("poof");
-    VerticalAttack.classList.add("warn");
+    for(var i = 0; i < eachVerticalAttack.length; i++){
+        eachVerticalAttack[i].style.top = `${offset}px`;
+        eachVerticalAttack[i].classList.remove("poof");
+        eachVerticalAttack[i].classList.add("warn");
+    }
     await sleep(750);
-    VerticalAttack.classList.remove("warn");
     VerticalHitbox = true;
+    for (var i = 0; i < eachVerticalAttack.length; i++) {
+        eachVerticalAttack[i].classList.remove("warn");
+    }
     await sleep(250);
     VerticalHitbox = false;
-    // VerticalAttack.classList.add("poof");
+    for (var i = 0; i < eachVerticalAttack.length; i++) {
+        eachVerticalAttack[i].classList.add("poof");
+    }
     await sleep(250);
 }
 

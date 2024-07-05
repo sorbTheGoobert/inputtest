@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             height: 100vh;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
         #player {
             aspect-ratio: 1;
@@ -49,7 +49,6 @@
         #horizontalAttackContainer {
             position: absolute;
             gap: 50px;
-            
             display: flex;
         }
 
@@ -94,19 +93,19 @@
         <div class="horizontalAttack"></div>
     </div>
     
-    <div id="verticalAttackContainer" class="poof">
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
-        <div class="verticalAttack"></div>
+    <div id="verticalAttackContainer">
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
+        <div class="verticalAttack poof"></div>
     </div>
     <p id="score">Your current score is: none ya know?</p>
     <button onclick="start()" id="button">start</button>
