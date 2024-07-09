@@ -9,13 +9,28 @@ var scorePanel = document.getElementById("score");
 var score = 0;
 var VerticalHitbox = false;
 var HorizontalHitbox = false;
-var eachVerticalAttack = document.getElementsByClassName("verticalAttack");
-var eachHorizontalAttack = document.getElementsByClassName("horizontalAttack");
+const eachVerticalAttack = document.getElementsByClassName("verticalAttack");
+const eachHorizontalAttack = document.getElementsByClassName("horizontalAttack");
+var eachVerticalAttackPos = [];
+var eachHorizontalAttackPos = [];
 var scoreInterval;
 var attackInterval;
 var checkInterval;
+var ost = document.getElementById("ost");
+var HS = document.getElementById("HS");
 
-console.log(eachVerticalAttack);
+ost.volume = 0.2;
+
+for(let i = 0; i < eachVerticalAttack.length; i++){
+    eachVerticalAttack[i].style.top = `${i*100}px`;
+    eachVerticalAttack[i].style.left = `${0}px`;
+    eachVerticalAttackPos[i] = eachVerticalAttack[i].offsetTop;
+}
+for(let i = 0; i < eachHorizontalAttack.length; i++){
+    eachHorizontalAttack[i].style.left = `${i*100}px`;
+    eachHorizontalAttack[i].style.top = `${0}px`;
+    eachHorizontalAttackPos[i] = eachHorizontalAttack[i].offsetLeft;
+}
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -58,7 +73,7 @@ function move() {
 }
 
 function spawnObjects() {
-    var rng = 50;//Math.floor(Math.random() * 100);
+    var rng = Math.floor(Math.random() * 100);
     var placementrng = Math.floor(Math.random() * 50);
     if(0 <= rng && rng< 20){
         spawnVerticalAttack(placementrng);
@@ -74,7 +89,7 @@ function spawnObjects() {
 
 async function spawnVerticalAttack(offset) {
     for(var i = 0; i < eachVerticalAttack.length; i++){
-        eachVerticalAttack[i].style.top = `${offset}px`;
+        eachVerticalAttack[i].style.top = `${eachVerticalAttack[i].offsetTop + offset}px`;
         eachVerticalAttack[i].classList.remove("poof");
         eachVerticalAttack[i].classList.add("warn");
     }
@@ -87,20 +102,28 @@ async function spawnVerticalAttack(offset) {
     VerticalHitbox = false;
     for (var i = 0; i < eachVerticalAttack.length; i++) {
         eachVerticalAttack[i].classList.add("poof");
+        eachVerticalAttack[i].style.top = `${eachVerticalAttackPos[i]}px`; 
     }
     await sleep(250);
 }
 
-async function spawnHorizontalAttack(offset){
-    HorizontalAttack.style.left = `${offset}px`;
-    HorizontalAttack.classList.remove("poof");
-    HorizontalAttack.classList.add("warn");
+async function spawnHorizontalAttack(offset) {
+    for(var i = 0; i < eachHorizontalAttack.length; i++){
+        eachHorizontalAttack[i].style.left = `${eachHorizontalAttack[i].offsetLeft + offset}px`;
+        eachHorizontalAttack[i].classList.remove("poof");
+        eachHorizontalAttack[i].classList.add("warn");
+    }
     await sleep(750);
-    HorizontalAttack.classList.remove("warn");
     HorizontalHitbox = true;
+    for (var i = 0; i < eachHorizontalAttack.length; i++) {
+        eachHorizontalAttack[i].classList.remove("warn");
+    }
     await sleep(250);
     HorizontalHitbox = false;
-    HorizontalAttack.classList.add("poof");
+    for (var i = 0; i < eachHorizontalAttack.length; i++) {
+        eachHorizontalAttack[i].classList.add("poof");
+        eachHorizontalAttack[i].style.left = `${eachHorizontalAttackPos[i]}px`; 
+    }
     await sleep(250);
 }
 
@@ -111,7 +134,9 @@ function checkIfLost() {
         }
     }
     if(HorizontalHitbox == true){
-        
+        for (var i = 0; i < eachHorizontalAttack.length; i++) {
+            checkCollision(player, eachHorizontalAttack[i], 2);
+        }
     }
 }
 
@@ -121,22 +146,26 @@ function checkCollision(object1, object2, n) {
             object1.offsetTop + object1.offsetHeight >= object2.offsetTop &&
             object2.offsetTop + object2.offsetHeight >= object1.offsetTop
         ){
-            object2.style.backgroundColor = "green";
             clearInterval(scoreInterval);
             clearInterval(attackInterval);
             clearInterval(checkInterval);
-            console.log(object2.offsetHeight);
-            console.log(object2.offsetTop);
+            started = false;
+            document.getElementById("button").style = "display: block";
+            document.getElementById("button").innerHTML = "restart?";
+            HS.innerHTML = `HS: ${score}`;
         }
     }else{
         if (
             object1.offsetLeft + object1.offsetWidth >= object2.offsetLeft &&
             object2.offsetLeft + object2.offsetWidth >= object1.offsetLeft
         ) {
-            object2.style.backgroundColor = "green";
             clearInterval(scoreInterval);
             clearInterval(attackInterval);
             clearInterval(checkInterval);
+            started = false;
+            document.getElementById("button").style = "display: block";
+            document.getElementById("button").innerHTML = "restart?";
+            HS.innerHTML = `HS: ${score}`;
         }
     }
 }
