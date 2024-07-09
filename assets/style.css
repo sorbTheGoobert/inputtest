@@ -1,0 +1,64 @@
+body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url("https://infernummod.wiki.gg/images/thumb/3/36/ProfanedGardenArena.png/280px-ProfanedGardenArena.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        #player {
+            aspect-ratio: 1;
+            width: 25px;
+            background-color: red;
+            position: absolute;
+            z-index: 998;
+        }
+        .poof {
+            visibility: hidden;
+        }
+        #score {
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            z-index: 999;
+            color: orange;
+            font-family: "Kanit";
+            font-weight: 800;
+            font-size: 16px;
+        }
+        #HS {
+            position: absolute;
+            top: 45px;
+            left: 30px;
+            z-index: 999;
+            color: orange;
+            font-family: "Kanit";
+            font-weight: 800;
+            font-size: 16px;
+        }
+        .warn {
+            opacity: 0.5;
+        }
+        .horizontalAttack {
+            background-color: yellow;
+            height: 100vh;
+            width: 50px;
+            position: absolute;
+        }
+
+        .verticalAttack {
+            background-color: yellow;
+            width: 100vw;
+            height: 50px;
+            position: absolute;
+        }
+
+        #button {
+            z-index: 999;
+        }

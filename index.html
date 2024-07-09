@@ -7,72 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            height: 100vh;
-            overflow: hidden;
-            background-image: url("https://infernummod.wiki.gg/images/thumb/3/36/ProfanedGardenArena.png/280px-ProfanedGardenArena.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        #player {
-            aspect-ratio: 1;
-            width: 25px;
-            background-color: red;
-            position: absolute;
-            z-index: 998;
-        }
-        .poof {
-            visibility: hidden;
-        }
-        #score {
-            position: absolute;
-            top: 15px;
-            left: 30px;
-            z-index: 999;
-            color: orange;
-            font-family: "Kanit";
-            font-weight: 800;
-            font-size: 16px;
-        }
-        #HS {
-            position: absolute;
-            top: 45px;
-            left: 30px;
-            z-index: 999;
-            color: orange;
-            font-family: "Kanit";
-            font-weight: 800;
-            font-size: 16px;
-        }
-        .warn {
-            opacity: 0.5;
-        }
-        .horizontalAttack {
-            background-color: yellow;
-            height: 100vh;
-            width: 50px;
-            position: absolute;
-        }
-
-        .verticalAttack {
-            background-color: yellow;
-            width: 100vw;
-            height: 50px;
-            position: absolute;
-        }
-
-        #button {
-            z-index: 999;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body onkeydown="move()">
     <div id="player" class="poof"></div>
@@ -116,7 +51,7 @@
     <div class="verticalAttack poof"></div>
 
     <audio autoplay loop id="ost">
-        <source src="./03. Unholy Insurgency.mp3" type="audio/mp3">
+        <source src="./assets/03. Unholy Insurgency.mp3" type="audio/mp3">
         no ost cuz yo browser suck
     </audio>
     <p id="score">Your current score is: none ya know?</p>
