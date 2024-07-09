@@ -19,7 +19,8 @@ var checkInterval;
 var ost = document.getElementById("ost");
 var HS = document.getElementById("HS");
 
-ost.volume = 0.2;
+ost.volume = 0.1;
+
 
 for(let i = 0; i < eachVerticalAttack.length; i++){
     eachVerticalAttack[i].style.top = `${i*100}px`;
